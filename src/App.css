@@ -1,0 +1,20 @@
+@import "~antd/dist/antd.css";
+
+.logo {
+  width: 120px;
+  height: 31px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 16px 24px 16px 0;
+  float: left;
+}
+
+.pad-24 {
+  padding: 24px;
+}
+
+.icon-btn {
+  border: 2px solid #ffbcbc;
+  padding: 3px;
+  margin: 3px;
+  border-radius: 3px;
+}

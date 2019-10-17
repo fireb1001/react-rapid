@@ -1,15 +1,15 @@
 import React, { useReducer, createContext } from "react";
 
-const initialState = {};
+const initialState = { show_archived: false, toggleShowState: flag => {} };
 
-const AppCtxt = createContext({});
+const AppCtxt = createContext({ ...initialState });
 
 function appReducer(state, action) {
   switch (action.type) {
-    case "LOGIN":
+    case "TOGGLE_SHOW_ARCHIVED":
       return {
         ...state,
-        user: action.payload
+        show_archived: action.payload
       };
     case "LOGOUT":
       return {
@@ -22,9 +22,18 @@ function appReducer(state, action) {
 }
 
 function CtxtProvider(props) {
-  const [state, dispatch] = useReducer(appReducer, initialState);
-  console.log(state, dispatch);
-  return <AppCtxt.Provider value={{}} {...props} />;
+  const [state, dispatch] = useReducer(appReducer, { ...initialState });
+
+  function toggleShowState(flag) {
+    dispatch({ type: "TOGGLE_SHOW_ARCHIVED", payload: flag });
+  }
+
+  return (
+    <AppCtxt.Provider
+      value={{ show_archived: state.show_archived, toggleShowState }}
+      {...props}
+    />
+  );
 }
 
 export { AppCtxt, CtxtProvider };
